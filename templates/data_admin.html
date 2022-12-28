@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zones</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <style>
+        body {
+            padding-top: 30px;
+            padding-bottom: 30px;
+            background-color: #efedf3ec;
+        }
+
+        a {
+            color: black;
+        }
+    </style>
+</head>
+
+
+<body>
+    {% if user[5] == 1 %} 
+    <p> Hello, {{user[0]}}</p>
+    <center>
+    <div class="m-4 container">
+        
+        
+    </div>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+        }
+        </style>
+        </head>
+        <body>
+        
+        <h2>Donation Information</h2>
+        
+        
+        
+        <table style="width:75%">
+          <tr>
+            <th>SERIAL NO:</th>
+            <th>USERNAME</th>
+            <th>EMAIL</th> 
+            <th>TYPE_OF_FOOD</th>
+            <th>DATE_OF_COOKING</th>
+            <th>TIME_OF_COOKING</th>
+            <th>QUANTITY</th>
+            <th>LOCATION</th>
+            <th>AGENT_NAME</th>
+            <!-- <th>DONATION_STATUS</th> -->
+            <th>DELETE_INFO</th>
+
+          </tr>
+                {%- for row in rows %}
+                <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td>{{row[2]}}</td>
+                    <td>{{row[3]}}</td>
+                    <td>{{row[4]}}</td>
+                    <td>{{row[5]}}</td>
+                    <td>{{row[6]}}</td>
+                    <td><form method="POST" action = "{{url_for('update_info', USERID=row[7])}}">
+                        <Select name = 'agent'>
+                       
+                            {% for user in user1 %}
+                                <option value='{{user[2]}}'>{{user[2]}}</option>
+                            {% endfor %}
+                        </select>
+                        <input class="btn btn-danger btn-sm" type="submit" value="Assign"/>
+                    </form></td>
+                    
+                    <!-- <td>{{row[7]}}</td> -->
+                    <td><form method="post" action="{{url_for('delete_info', USERID=row[7])}}">
+                        <center><button type="submit" class="btn btn-danger btn-sm">Delete</button></form></center></td>
+                    
+                </tr>
+                {%- endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- <div class="m-3 float-right"> 
+        <button type="button" class="btn btn-danger"><a href="{{url_for('home')}}">Go to location update Page</a></button>
+    </div>-->
+    </center>
+{% elif user[5] == 0 %}
+<p> Hello, {{user[0]}}</p>
+<center>
+    <div class="m-4 container">
+        
+        
+    </div>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+        }
+        </style>
+        </head>
+        <body>
+        
+        <h2>Donation Information</h2>
+        
+        
+        
+        <table style="width:75%">
+          <tr>
+            <th>SERIAL NO:</th>
+            <th>USERNAME</th>
+            <th>EMAIL</th> 
+            <th>TYPE_OF_FOOD</th>
+            <th>DATE_OF_COOKING</th>
+            <th>TIME_OF_COOKING</th>
+            <th>QUANTITY</th>
+            <th>LOCATION</th>
+            <th>AGENT_NAME</th>
+            <th>DONATION_STATUS</th>
+
+          </tr>
+                {%- for row in rows %}
+                <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td>{{row[2]}}</td>
+                    <td>{{row[3]}}</td>
+                    <td>{{row[4]}}</td>
+                    <td>{{row[5]}}</td>
+
+                    <!-- <td>{{row[6]}}</td> -->
+                    <td>{{row[7]}}</td>
+                </tr>
+                {%- endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- <div class="m-3 float-right"> 
+        <button type="button" class="btn btn-danger"><a href="{{url_for('home')}}">Go to location update Page</a></button>
+    </div>-->
+    </center>
+
+    {% endif %}
+
+</body>
+
+</html>
